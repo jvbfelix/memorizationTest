@@ -3,6 +3,7 @@ import { reactive, computed, ref } from 'vue'
 
 let cardList: boolean[] = reactive([])
 let targetList: boolean[] = reactive([])
+const maxGrid = ref(6)
 
 const gameData = reactive({ step: 0, target: 3, activeSelection: true })
 
@@ -30,11 +31,11 @@ const isSelected = (n: number) => {
 
 const cardSize = () => {
   console.log(100 / (4 + getLevel()))
-  return 1 / (3 + getLevel())
+  return 1 / Math.min(3 + getLevel(), maxGrid.value)
 }
 
 const getLevel = () => {
-  return Math.floor(gameData.step / 4)
+  return Math.floor(gameData.step / 3)
 }
 
 const getSelectCount = () => {
@@ -72,16 +73,15 @@ const generateGame = () => {
 generateGame()
 
 const addLevel = () => {
+  if (gameData.target < cardList.length / 2) {
+    gameData.target++
+  }
   setTimeout(() => {
-    const currentLevel = getLevel()
-    console.log('addLevel', currentLevel)
     gameData.step++
-    if (currentLevel != getLevel()) {
-      console.log('Level up!')
-      const cards = 3 + getLevel()
-      for (let i = 0; i < cards * cards; i++) {
-        cardList[i] = false
-      }
+    console.log('Level up!')
+    const cards = Math.min(3 + getLevel(), maxGrid.value)
+    for (let i = 0; i < cards * cards; i++) {
+      cardList[i] = false
     }
   }, 1000)
 }
