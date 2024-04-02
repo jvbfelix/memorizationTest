@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import SequencesGame from '@/components/SequencesGame.vue'
+import MemorizationGame from '@/components/MemorizationGame.vue'
 </script>
 
 <template>
   <main>
-    <SequencesGame />
+    <MemorizationGame />
   </main>
 </template>

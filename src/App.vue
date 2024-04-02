@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import Sequences from './components/Sequences.vue'
 </script>
 
 <template>
@@ -8,4 +7,3 @@ import Sequences from './components/Sequences.vue'
 </template>
 
 <style scoped></style>
-./components/SequencesGame.vue
