@@ -30,7 +30,6 @@ const isSelected = (n: number) => {
 }
 
 const cardSize = () => {
-  console.log(100 / (4 + getLevel()))
   return 1 / Math.min(3 + getLevel(), maxGrid.value)
 }
 
@@ -51,7 +50,6 @@ const generateGame = () => {
       randomNumbers.push(randomNumber)
     }
   }
-  console.log('randomNumbers', randomNumbers)
   for (let i = 0; i < targetList.length; i++) {
     if (randomNumbers.includes(i)) {
       targetList[i] = true
@@ -62,7 +60,6 @@ const generateGame = () => {
   randomNumbers.forEach((number) => {
     targetList[number] = true
   })
-  console.log('targetList', targetList)
   setTimeout(() => {
     randomNumbers.forEach((number) => {
       cardList[number] = true
@@ -78,7 +75,6 @@ const addLevel = () => {
   }
   setTimeout(() => {
     gameData.step++
-    console.log('Level up!')
     const cards = Math.min(3 + getLevel(), maxGrid.value)
     for (let i = 0; i < cards * cards; i++) {
       cardList[i] = false
