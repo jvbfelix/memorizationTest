@@ -164,13 +164,14 @@ section {
   display: flex;
   padding: 5%;
   width: 100%;
-  background-color: red;
+  background-color: #49454f;
 }
 
 .wordsList {
-  background-color: green;
+  background-color: #1D192B;
   padding: 15px;
   margin-left: 10px;
+  color: #FFFFFF;
 
   ul {
     padding-left: 1.2em;
@@ -196,16 +197,16 @@ section {
   align-items: center;
 
   .card {
-    background-color: blue;
+    background-color: #21005d;
     -webkit-user-select: none;
     user-select: none;
     padding: 5px;
-    border: 1px solid black;
+    border: 1px solid #cac4d0;
     aspect-ratio: 1;
     height: 40px;
     text-align: center;
     vertical-align: middle;
-    color: black;
+    color: #ffffff;
   }
 
   .card:hover {
@@ -213,7 +214,7 @@ section {
   }
 
   .card-selected {
-    background-color: yellow;
+    background-color: #FDD835;
   }
 }
 

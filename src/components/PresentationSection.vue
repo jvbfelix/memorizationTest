@@ -58,7 +58,7 @@ section {
   display: flex;
   padding: 5%;
   width: 100%;
-  background-color: red;
+  background-color: #49454f;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -70,12 +70,13 @@ section {
   align-items: center;
   text-align: center;
   padding: 50px 20px;
+  color: #FFFFFF;
 
   button {
     padding: 10px 20px;
     margin-top: 40px;
     background-color: #f0f0f0;
-    border: 1px solid #000;
+    border: 1px solid #cac4d0;
     border-radius: 5px;
     cursor: pointer;
   }

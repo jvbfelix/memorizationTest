@@ -124,7 +124,7 @@ section {
   display: flex;
   padding: 5%;
   width: 100%;
-  background-color: red;
+  background-color: #49454f;
 }
 
 .container {
@@ -139,9 +139,9 @@ section {
     aspect-ratio: 1;
     width: calc(600px * v-bind(cardSize()) - 10px - 1px);
     margin: 1%;
-    background-color: blue;
+    background-color: #21005D;
     border-radius: 5px;
-    border: 3px solid black;
+    border: 3px solid #cac4d0;
     -webkit-user-select: none;
     user-select: none;
     transform: rotate3d(0);
@@ -153,7 +153,7 @@ section {
   }
 
   .card-selected {
-    background-color: yellow;
+    background-color: #FDD835;
     transform: rotate3d(1, 0, 0, 180deg);
     transition: transform 0.5s;
   }

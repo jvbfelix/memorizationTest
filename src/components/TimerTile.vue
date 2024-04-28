@@ -36,7 +36,7 @@ const cron = setInterval(timer, 1000)
 <style scoped lang="scss">
 .timer {
   padding: 10px;
-  background-color: blue;
+  background-color: #21005d;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -44,5 +44,6 @@ const cron = setInterval(timer, 1000)
   position: fixed;
   top: 0;
   left: 0;
+  color: #FFFFFF;
 }
 </style>

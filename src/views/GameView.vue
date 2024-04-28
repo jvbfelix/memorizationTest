@@ -27,7 +27,7 @@ const finishGame = () => {
 <template>
   <main>
     <PresentationSection v-if="!game.active" :game="game.presentation" :startGame="nextGame" />
-    <TimerTile v-if="game.active" :limit="100" :endGame="finishGame" />
+    <TimerTile v-if="game.active" :limit="2" :endGame="finishGame" />
     <MemorizationGame v-if="game.active && game.presentation == 2" />
     <SequencesGame v-if="game.active && game.presentation == 3" />
     <HuntingWords v-if="game.active && game.presentation == 4" />
