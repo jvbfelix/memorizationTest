@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 
-const difficulty = ref(1)
-const gridSize = (3 + difficulty.value) * (3 + difficulty.value)
+const props = defineProps<{
+  difficulty: number
+}>()
+
+const gridSize = (3 + props.difficulty) * (3 + props.difficulty)
 let cardList: number[] = reactive([])
 let targetList: number[] = reactive([])
 
 const gameData = reactive({ target: 1, activeSelection: true, currentActive: -1 })
 
 const cardSize = () => {
-  return 1 / (3 + difficulty.value)
+  return 1 / (3 + props.difficulty)
 }
 
 const generateGame = async () => {
@@ -111,7 +114,7 @@ section {
     aspect-ratio: 1;
     width: calc(600px * v-bind(cardSize()) - 10px - 1px);
     margin: 1%;
-    background-color: #21005D;
+    background-color: #21005d;
     border-radius: 5px;
     border: 3px solid #cac4d0;
     -webkit-user-select: none;
@@ -132,10 +135,10 @@ section {
 
   @keyframes clickAnimation {
     50% {
-      background-color: #FDD835;
+      background-color: #fdd835;
     }
     100% {
-      background-color: #21005D;
+      background-color: #21005d;
     }
   }
 }

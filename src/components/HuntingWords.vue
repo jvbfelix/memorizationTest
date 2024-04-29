@@ -1,22 +1,25 @@
 <script setup lang="ts">
 import { reactive, onMounted } from 'vue'
 
-const maxGrid = 16
-let gameTable: string[][] = reactive(Array.from(new Array(maxGrid).fill('')))
-let gameTableMark: boolean[][] = reactive(Array.from(new Array(maxGrid).fill(false)))
+const props = defineProps<{
+  maxGrid: number
+  words: Array<string>
+  wordsMax: number
+}>()
+let gameTable: string[][] = reactive(Array.from(new Array(props.maxGrid).fill('')))
+let gameTableMark: boolean[][] = reactive(Array.from(new Array(props.maxGrid).fill(false)))
 let gameTableSelected: boolean[][] = reactive(
-  new Array(maxGrid).fill(new Array(maxGrid).fill(false))
+  new Array(props.maxGrid).fill(new Array(props.maxGrid).fill(false))
 )
-const words = ['teste', 'computação', 'árvore']
 let wordsMark: { word: string; indexes: [number, number][] }[] = []
 const gameData = reactive({ step: 0, target: 3, activeSelection: true })
 
 const generateBlankTable = () => {
   const chars: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  for (let i = 0; i < maxGrid; i++) {
-    let line: string[] = new Array(maxGrid).fill('')
-    let lineMark: boolean[] = new Array(maxGrid).fill(false)
-    for (let j = 0; j < maxGrid; j++) {
+  for (let i = 0; i < props.maxGrid; i++) {
+    let line: string[] = new Array(props.maxGrid).fill('')
+    let lineMark: boolean[] = new Array(props.maxGrid).fill(false)
+    for (let j = 0; j < props.maxGrid; j++) {
       line[j] = chars[Math.floor(Math.random() * chars.length)]
     }
     gameTable[i] = line
@@ -30,12 +33,12 @@ const insertWord = (word: string) => {
   let indexes: [number, number][] = []
   while (!inserted) {
     const way = Math.floor(Math.random() * 4)
-    const randomIndexX = Math.floor(Math.random() * maxGrid)
-    const randomIndexY = Math.floor(Math.random() * maxGrid)
-    if (way != 1 && randomIndexX + word.length > maxGrid) {
+    const randomIndexX = Math.floor(Math.random() * props.maxGrid)
+    const randomIndexY = Math.floor(Math.random() * props.maxGrid)
+    if (way != 1 && randomIndexX + word.length > props.maxGrid) {
       continue
     }
-    if ((way == 1 || way == 2) && randomIndexY + word.length > maxGrid) {
+    if ((way == 1 || way == 2) && randomIndexY + word.length > props.maxGrid) {
       continue
     }
     if (way == 3 && randomIndexY - word.length < 0) {
@@ -108,7 +111,7 @@ const insertWord = (word: string) => {
 
 const generateGame = () => {
   generateBlankTable()
-  for (let word of words) {
+  for (let word of props.words) {
     insertWord(word)
   }
 }
@@ -139,16 +142,20 @@ onMounted(() => {
     <div class="wordsList">
       <h4>Palavras em jogo:</h4>
       <ul>
-        <li v-for="(word, i) in words" :key="i" :class="isSelectedWord(word) ? 'selectedWord' : ''">
+        <li
+          v-for="(word, i) in props.words"
+          :key="i"
+          :class="isSelectedWord(word) ? 'selectedWord' : ''"
+        >
           {{ word }}
         </li>
       </ul>
     </div>
     <div class="container">
-      <div v-for="(n, indexx) in maxGrid" :key="n">
+      <div v-for="(n, indexx) in props.maxGrid" :key="n">
         <p
           v-for="(m, indexy) in gameTable[n]"
-          :key="indexx * maxGrid + indexy"
+          :key="indexx * props.maxGrid + indexy"
           @click="selectCard(indexx + 1, indexy)"
           :class="isSelected(indexx + 1, indexy) ? 'card card-selected' : 'card'"
         >
@@ -168,10 +175,10 @@ section {
 }
 
 .wordsList {
-  background-color: #1D192B;
+  background-color: #1d192b;
   padding: 15px;
   margin-left: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
 
   ul {
     padding-left: 1.2em;
@@ -214,7 +221,7 @@ section {
   }
 
   .card-selected {
-    background-color: #FDD835;
+    background-color: #fdd835;
   }
 }
 

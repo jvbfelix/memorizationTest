@@ -22,14 +22,21 @@ const nextGame = () => {
 const finishGame = () => {
   game.active = false
 }
+
+const words = ['teste', 'computação', 'árvore']
 </script>
 
 <template>
   <main>
     <PresentationSection v-if="!game.active" :game="game.presentation" :startGame="nextGame" />
     <TimerTile v-if="game.active" :limit="2" :endGame="finishGame" />
-    <MemorizationGame v-if="game.active && game.presentation == 2" />
-    <SequencesGame v-if="game.active && game.presentation == 3" />
-    <HuntingWords v-if="game.active && game.presentation == 4" />
+    <MemorizationGame v-if="game.active && game.presentation == 2" :maxGrid="6" />
+    <SequencesGame v-if="game.active && game.presentation == 3" :difficulty="1" />
+    <HuntingWords
+      v-if="game.active && game.presentation == 4"
+      :maxGrid="16"
+      :words="words"
+      :words-max="words.length"
+    />
   </main>
 </template>

@@ -3,7 +3,9 @@ import { reactive, computed, ref } from 'vue'
 
 let cardList: boolean[] = reactive([])
 let targetList: boolean[] = reactive([])
-const maxGrid = ref(6)
+const props = defineProps<{
+  maxGrid: number
+}>()
 
 const gameData = reactive({ step: 0, target: 3, activeSelection: true })
 
@@ -30,7 +32,7 @@ const isSelected = (n: number) => {
 }
 
 const cardSize = () => {
-  return 1 / Math.min(3 + getLevel(), maxGrid.value)
+  return 1 / Math.min(3 + getLevel(), props.maxGrid)
 }
 
 const getLevel = () => {
@@ -75,7 +77,7 @@ const addLevel = () => {
   }
   setTimeout(() => {
     gameData.step++
-    const cards = Math.min(3 + getLevel(), maxGrid.value)
+    const cards = Math.min(3 + getLevel(), props.maxGrid)
     for (let i = 0; i < cards * cards; i++) {
       cardList[i] = false
     }
@@ -139,7 +141,7 @@ section {
     aspect-ratio: 1;
     width: calc(600px * v-bind(cardSize()) - 10px - 1px);
     margin: 1%;
-    background-color: #21005D;
+    background-color: #21005d;
     border-radius: 5px;
     border: 3px solid #cac4d0;
     -webkit-user-select: none;
@@ -153,7 +155,7 @@ section {
   }
 
   .card-selected {
-    background-color: #FDD835;
+    background-color: #fdd835;
     transform: rotate3d(1, 0, 0, 180deg);
     transition: transform 0.5s;
   }
