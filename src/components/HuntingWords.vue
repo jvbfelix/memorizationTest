@@ -13,10 +13,12 @@ let gameTableSelected: boolean[][] = reactive(
 )
 let wordsMark: { word: string; indexes: [number, number][] }[] = []
 let randomWords: string[] = ref([])
+let selectedWords: string[] = ref([])
 const gameData = reactive({ step: 0, target: 3, activeSelection: true })
 
 const generateBlankTable = () => {
   const chars: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  gameTableSelected = reactive(new Array(props.maxGrid).fill(new Array(props.maxGrid).fill(false)))
   for (let i = 0; i < props.maxGrid; i++) {
     let line: string[] = new Array(props.maxGrid).fill('')
     let lineMark: boolean[] = new Array(props.maxGrid).fill(false)
@@ -112,8 +114,11 @@ const insertWord = (word: string) => {
 
 const generateGame = () => {
   generateBlankTable()
+  selectedWords.value = []
   randomWords.value = props.words
-  randomWords.value = randomWords.value.sort(() => Math.random() - 0.5).slice(0, props.wordsMax)
+  randomWords.value = randomWords.value
+    .sort(() => Math.random() - 0.5)
+    .slice(0, Math.min(props.wordsMax, props.words.length))
   console.log(randomWords)
   for (let word of randomWords.value) {
     console.log(word)
@@ -126,7 +131,15 @@ const isSelected = (x: number, y: number) => {
 }
 
 const isSelectedWord = (word: string) => {
-  return wordsMark.find((w) => w.word == word)?.indexes.every(([x, y]) => gameTableSelected[x][y])
+  const selected = wordsMark
+    .find((w) => w.word == word)
+    ?.indexes.every(([x, y]) => gameTableSelected[x][y])
+  if (selected) {
+    if (!selectedWords.value.includes(word)) {
+      selectedWords.value.push(word)
+    }
+  }
+  return selected
 }
 
 const selectCard = (x: number, y: number) => {
@@ -135,6 +148,11 @@ const selectCard = (x: number, y: number) => {
     tempSelect[y] = gameTableMark[x][y]
     gameTableSelected[x] = tempSelect
   }
+  setTimeout(() => {
+    if (selectedWords.value.length >= randomWords.value.length) {
+      generateGame()
+    }
+  }, 1000)
 }
 
 onMounted(() => {
