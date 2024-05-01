@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, onMounted } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 
 const props = defineProps<{
   maxGrid: number
@@ -12,6 +12,7 @@ let gameTableSelected: boolean[][] = reactive(
   new Array(props.maxGrid).fill(new Array(props.maxGrid).fill(false))
 )
 let wordsMark: { word: string; indexes: [number, number][] }[] = []
+let randomWords: string[] = ref([])
 const gameData = reactive({ step: 0, target: 3, activeSelection: true })
 
 const generateBlankTable = () => {
@@ -111,7 +112,11 @@ const insertWord = (word: string) => {
 
 const generateGame = () => {
   generateBlankTable()
-  for (let word of props.words) {
+  randomWords.value = props.words
+  randomWords.value = randomWords.value.sort(() => Math.random() - 0.5).slice(0, props.wordsMax)
+  console.log(randomWords)
+  for (let word of randomWords.value) {
+    console.log(word)
     insertWord(word)
   }
 }
@@ -143,7 +148,7 @@ onMounted(() => {
       <h4>Palavras em jogo:</h4>
       <ul>
         <li
-          v-for="(word, i) in props.words"
+          v-for="(word, i) in randomWords"
           :key="i"
           :class="isSelectedWord(word) ? 'selectedWord' : ''"
         >
