@@ -41,6 +41,9 @@ const saveConfig = () => {
 
 <template>
   <main>
+    <div class="top-right">
+      <RouterLink to="/">Voltar</RouterLink>
+    </div>
     <section class="config-view">
       <h1>Configuração:</h1>
       <form @submit.prevent="saveConfig">
@@ -69,6 +72,12 @@ const saveConfig = () => {
 </template>
 
 <style scoped lang="scss">
+.top-right {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .config-view {
   padding: 10px;
   background-color: #21005d;

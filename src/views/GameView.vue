@@ -39,6 +39,9 @@ const finishGame = () => {
 
 <template>
   <main>
+    <div class="top-right">
+      <RouterLink to="/config">Configuração</RouterLink>
+    </div>
     <PresentationSection v-if="!game.active" :game="game.presentation" :startGame="nextGame" />
     <TimerTile v-if="game.active" :limit="GameTime" :endGame="finishGame" />
     <MemorizationGame v-if="game.active && game.presentation == 2" :maxGrid="MemorizationMaxGrid" />
@@ -51,3 +54,11 @@ const finishGame = () => {
     />
   </main>
 </template>
+
+<style>
+.top-right {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+</style>
