@@ -31,6 +31,7 @@ const generateBlankTable = () => {
 }
 
 const insertWord = (word: string) => {
+  wordsMark = []
   const charsArr = word.toUpperCase().split('')
   let inserted = false
   let indexes: [number, number][] = []

@@ -11,7 +11,9 @@ import { storeToRefs } from 'pinia'
 const store = useConfigStore()
 
 const {
-  GameTime,
+  HuntingWordsTime,
+  SequencesGameTime,
+  MemorizationGameTime,
   MemorizationMaxGrid,
   SequencesDifficulty,
   HuntingMaxGrid,
@@ -19,7 +21,7 @@ const {
   HuntingWordsList
 } = storeToRefs(store)
 
-let game = reactive({ presentation: 0, active: false })
+let game = reactive({ presentation: 4, active: true })
 const nextGame = () => {
   if (game.presentation == 0) {
     game.presentation++
@@ -35,6 +37,19 @@ const nextGame = () => {
 const finishGame = () => {
   game.active = false
 }
+
+const GameTime = () => {
+  switch (game.presentation) {
+    case 2:
+      return HuntingWordsTime.value
+    case 3:
+      return MemorizationGameTime.value
+    case 4:
+      return SequencesGameTime.value
+    default:
+      return 10
+  }
+}
 </script>
 
 <template>
@@ -43,15 +58,15 @@ const finishGame = () => {
       <RouterLink to="/config">Configuração</RouterLink>
     </div>
     <PresentationSection v-if="!game.active" :game="game.presentation" :startGame="nextGame" />
-    <TimerTile v-if="game.active" :limit="GameTime" :endGame="finishGame" />
-    <MemorizationGame v-if="game.active && game.presentation == 2" :maxGrid="MemorizationMaxGrid" />
-    <SequencesGame v-if="game.active && game.presentation == 3" :difficulty="SequencesDifficulty" />
+    <TimerTile v-if="game.active" :limit="GameTime()" :endGame="finishGame" />
     <HuntingWords
-      v-if="game.active && game.presentation == 4"
+      v-if="game.active && game.presentation == 2"
       :maxGrid="HuntingMaxGrid"
       :words="HuntingWordsList"
       :wordsMax="HuntingWordsMax"
     />
+    <MemorizationGame v-if="game.active && game.presentation == 3" :maxGrid="MemorizationMaxGrid" />
+    <SequencesGame v-if="game.active && game.presentation == 4" :difficulty="SequencesDifficulty" />
   </main>
 </template>
 

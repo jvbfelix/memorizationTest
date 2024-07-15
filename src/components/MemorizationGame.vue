@@ -84,6 +84,21 @@ const addLevel = () => {
   }, 1000)
 }
 
+const removeLevel = () => {
+  if (gameData.target > 1) {
+    gameData.target--
+  }
+  setTimeout(() => {
+    if (gameData.step > 0) {
+      gameData.step--
+    }
+    const cards = Math.min(3 + getLevel(), props.maxGrid)
+    for (let i = 0; i < cards * cards; i++) {
+      cardList[i] = false
+    }
+  }, 1000)
+}
+
 const checkAnsw = () => {
   let correct = true
   for (let i = 0; i < targetList.length; i++) {
@@ -92,6 +107,8 @@ const checkAnsw = () => {
 
   if (correct) {
     addLevel()
+  } else {
+    removeLevel()
   }
   cleanSelected()
   generateGame()

@@ -9,11 +9,11 @@ const getHeader = () => {
     case 0:
       return 'Bem-vindo!'
     case 1:
-      return 'Memorização'
-    case 2:
-      return 'Sequências'
-    case 3:
       return 'Caça-Palavras'
+    case 2:
+      return 'Memorização'
+    case 3:
+      return 'Sequências'
     case 4:
       return 'Fim!'
     default:
@@ -26,11 +26,11 @@ const getContent = () => {
     case 0:
       return 'Olá, esta é uma sequência de jogos para testar a sua memória e atenção, vamos começar!?'
     case 1:
-      return 'Este é o Memorização, um jogo que irá testar a sua memória. A cada rodada, uma quantidade de peças serão viradas, e ao desvirar, você deverá ser capaz de selecionar as mesmas peças para pontuar, mas cuidado, a cada fase, o jogo ficará mais difícil!'
-    case 2:
-      return 'Este é o Sequências, um jogo que irá testar a sua memória. A cada rodada, uma sequência de peças serão viradas, e ao finalizar a exibição da sequência, você deverá ser capaz de selecionar as mesmas peças na mesma ordem exibida para pontuar, mas cuidado, a cada fase, o jogo ficará mais difícil!'
-    case 3:
       return 'Este é o Caça-Palavras, um jogo que irá testar a sua habilidade com o tabuleiro de palavras. Uma quantidade de palavras serão dispostas no tabuleiro, e você deverá ser capaz de encontrar todas as palavras para pontuar!'
+    case 2:
+      return 'Este é o Memorização, um jogo que irá testar a sua memória. A cada rodada, uma quantidade de peças serão viradas, e ao desvirar, você deverá ser capaz de selecionar as mesmas peças para pontuar, mas cuidado, a cada fase, o jogo ficará mais difícil!'
+    case 3:
+      return 'Este é o Sequências, um jogo que irá testar a sua memória. A cada rodada, uma sequência de peças serão viradas, e ao finalizar a exibição da sequência, você deverá ser capaz de selecionar as mesmas peças na mesma ordem exibida para pontuar, mas cuidado, a cada fase, o jogo ficará mais difícil!'
     case 4:
       return 'Suas atividades foram finalizadas, obrigado por participar! Clique abaixo para reiniciar o jogo.'
     default:
@@ -70,7 +70,7 @@ section {
   align-items: center;
   text-align: center;
   padding: 50px 20px;
-  color: #FFFFFF;
+  color: #ffffff;
 
   button {
     padding: 10px 20px;

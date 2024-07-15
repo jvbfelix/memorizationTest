@@ -5,7 +5,9 @@ import { storeToRefs } from 'pinia'
 const store = useConfigStore()
 
 const {
-  GameTime,
+  HuntingWordsTime,
+  SequencesGameTime,
+  MemorizationGameTime,
   MemorizationMaxGrid,
   SequencesDifficulty,
   HuntingMaxGrid,
@@ -14,7 +16,9 @@ const {
 } = storeToRefs(store)
 
 const {
-  setGameTime,
+  setHuntingWordsTime,
+  setSequencesGameTime,
+  setMemorizationGameTime,
   setMemorizationMaxGrid,
   setSequencesDifficulty,
   setHuntingMaxGrid,
@@ -23,7 +27,9 @@ const {
 } = store
 
 const saveConfig = () => {
-  setGameTime(GameTime.value)
+  setHuntingWordsTime(HuntingWordsTime.value)
+  setSequencesGameTime(SequencesGameTime.value)
+  setMemorizationGameTime(MemorizationGameTime.value)
   setMemorizationMaxGrid(MemorizationMaxGrid.value)
   setSequencesDifficulty(SequencesDifficulty.value)
   setHuntingMaxGrid(HuntingMaxGrid.value)
@@ -47,8 +53,14 @@ const saveConfig = () => {
     <section class="config-view">
       <h1>Configuração:</h1>
       <form @submit.prevent="saveConfig">
-        <label for="timer">Tempo de cada jogo em segundos:</label>
-        <input type="number" id="timer" v-model="GameTime" />
+        <label for="timerHuntingWords">Tempo de Caça-Palavras:</label>
+        <input type="number" id="timerHuntingWords" v-model="HuntingWordsTime" />
+
+        <label for="timerMemorizationGame">Tempo de Jogo da Memória:</label>
+        <input type="number" id="timerMemorizationGame" v-model="MemorizationGameTime" />
+
+        <label for="timerSequencesGame">Tempo de jogo de sequências:</label>
+        <input type="number" id="timerSequencesGame" v-model="SequencesGameTime" />
 
         <label for="memorizationMaxGrid">Tamanho máximo do grid do jogo de memorização:</label>
         <input type="number" id="memorizationMaxGrid" v-model="MemorizationMaxGrid" />
