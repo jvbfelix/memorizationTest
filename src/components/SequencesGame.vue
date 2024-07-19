@@ -9,7 +9,7 @@ const gridSize = (3 + props.difficulty) * (3 + props.difficulty)
 let cardList: number[] = reactive([])
 let targetList: number[] = reactive([])
 
-const gameData = reactive({ target: 1, activeSelection: true, currentActive: -1 })
+const gameData = reactive({ target: 1, activeSelection: true, currentActive: -1, wrong: -1 })
 
 const cardSize = () => {
   return 1 / (3 + props.difficulty)
@@ -17,6 +17,7 @@ const cardSize = () => {
 
 const generateGame = async () => {
   gameData.activeSelection = false
+  gameData.wrong = -1
   cardList = []
   while (targetList.length < gameData.target) {
     const randomNumber = Math.floor(Math.random() * gridSize)
@@ -50,17 +51,33 @@ const addLevel = () => {
 
 const checkAnsw = () => {
   let correct = true
-  for (let i = 0; i < targetList.length; i++) {
+  for (let i = 0; i < cardList.length; i++) {
     correct = correct && cardList[i] == targetList[i]
   }
 
-  if (correct) {
-    addLevel()
+  if (!correct) {
+    gameData.wrong = cardList[cardList.length - 1]
+    setTimeout(() => {
+      generateGame()
+    }, 1000)
   }
-  generateGame()
+
+  if (correct && cardList.length == targetList.length) {
+    if (correct) {
+      addLevel()
+      generateGame()
+    }
+  }
 }
-const isSelected = (n: number) => {
-  return gameData.currentActive == n
+
+const selectedClass = (n: number) => {
+  if (gameData.wrong == n) {
+    return 'card card-wrong'
+  } else if (gameData.currentActive == n) {
+    return 'card card-selected'
+  }
+
+  return 'card'
 }
 
 const selectCard = (n: number) => {
@@ -68,10 +85,9 @@ const selectCard = (n: number) => {
     cardList.push(n)
     gameData.activeSelection = false
     gameData.currentActive = n
+    checkAnsw()
     setTimeout(() => {
-      if (cardList.length == targetList.length) {
-        checkAnsw()
-      }
+      checkAnsw()
       gameData.activeSelection = true
       if (gameData.currentActive == n) {
         gameData.currentActive = -1
@@ -88,7 +104,7 @@ const selectCard = (n: number) => {
         v-for="n in gridSize"
         :key="n"
         @click="selectCard(n - 1)"
-        :class="isSelected(n - 1) ? 'card card-selected' : 'card'"
+        :class="selectedClass(n - 1)"
       ></div>
     </div>
   </section>
@@ -133,9 +149,24 @@ section {
     animation-timing-function: ease-out;
   }
 
+  .card-wrong {
+    animation-name: wrongAnimation;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+  }
+
   @keyframes clickAnimation {
     50% {
       background-color: #fdd835;
+    }
+    100% {
+      background-color: #21005d;
+    }
+  }
+
+  @keyframes wrongAnimation {
+    50% {
+      background-color: red;
     }
     100% {
       background-color: #21005d;
