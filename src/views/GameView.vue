@@ -21,7 +21,7 @@ const {
   HuntingWordsList
 } = storeToRefs(store)
 
-let game = reactive({ presentation: 4, active: true })
+let game = reactive({ presentation: 0, active: false })
 const nextGame = () => {
   if (game.presentation == 0) {
     game.presentation++
