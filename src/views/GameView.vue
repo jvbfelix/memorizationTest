@@ -7,6 +7,7 @@ import { reactive } from 'vue'
 import TimerTile from '@/components/TimerTile.vue'
 import { useConfigStore } from '@/stores/config'
 import { storeToRefs } from 'pinia'
+import PuzzleGame from '@/components/PuzzleGame.vue'
 
 const store = useConfigStore()
 
@@ -59,14 +60,15 @@ const GameTime = () => {
     </div>
     <PresentationSection v-if="!game.active" :game="game.presentation" :startGame="nextGame" />
     <TimerTile v-if="game.active" :limit="GameTime()" :endGame="finishGame" />
-    <HuntingWords
+    <!-- <HuntingWords
       v-if="game.active && game.presentation == 2"
       :maxGrid="HuntingMaxGrid"
       :words="HuntingWordsList"
       :wordsMax="HuntingWordsMax"
-    />
-    <MemorizationGame v-if="game.active && game.presentation == 3" :maxGrid="MemorizationMaxGrid" />
-    <SequencesGame v-if="game.active && game.presentation == 4" :difficulty="SequencesDifficulty" />
+    /> -->
+    <PuzzleGame v-if="game.active && game.presentation == 2" :columns="3" :rows="3" />
+    <!-- <MemorizationGame v-if="game.active && game.presentation == 3" :maxGrid="MemorizationMaxGrid" />
+    <SequencesGame v-if="game.active && game.presentation == 4" :difficulty="SequencesDifficulty" /> -->
   </main>
 </template>
 
