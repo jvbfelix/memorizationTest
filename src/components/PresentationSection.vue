@@ -12,10 +12,10 @@ const getHeader = () => {
       return 'Quebra-Cabeça'
     case 2:
       return 'Tangram'
-    // case 3:
-    //   return 'Sequências'
-    // case 4:
-    //   return 'Fim!'
+    case 3:
+      return 'Teste de Trilha'
+    case 4:
+      return 'Fim!'
     default:
       return 'Fim!'
   }
@@ -29,10 +29,10 @@ const getContent = () => {
       return 'Este é o Quebra-Cabeça, um jogo que irá testar a sua memória. A cada rodada, um novo quebra-cabeça será exibido, e você deverá ser capaz de montá-lo corretamente para pontuar!'
     case 2:
       return 'Este é o tangram, um jogo que irá testar a sua habilidade de montagem. A cada rodada, uma séria de peças serão exibidas, e você deverá ser capaz de encaixa-las corretamente para pontuar!'
-    // case 3:
-    //   return 'Este é o Sequências, um jogo que irá testar a sua memória. A cada rodada, uma sequência de peças serão viradas, e ao finalizar a exibição da sequência, você deverá ser capaz de selecionar as mesmas peças na mesma ordem exibida para pontuar, mas cuidado, a cada fase, o jogo ficará mais difícil!'
-    // case 4:
-    //   return 'Suas atividades foram finalizadas, obrigado por participar! Clique abaixo para reiniciar o jogo.'
+    case 3:
+      return 'Este é o Teste de Trilha, um jogo que irá testar a sua velocidade e flexibilidade. A cada rodada, uma sequência de pontos será exibida, e você deverá ser capaz de conecta-los na ordem correta para pontuar! A ordem correta é uma alternada alfanumérica, seguindo sempre um número e uma letra em suas respectivas ordens, 1, a, 2, b, 3, c, 4, d, seguindo até o final.'
+    case 4:
+      return 'Suas atividades foram finalizadas, obrigado por participar! Clique abaixo para reiniciar o jogo.'
     default:
       return 'Suas atividades foram finalizadas, obrigado por participar! Clique abaixo para reiniciar o jogo.'
   }

@@ -9,6 +9,7 @@ import { useConfigStore } from '@/stores/config'
 import { storeToRefs } from 'pinia'
 import PuzzleGame from '@/components/PuzzleGame.vue'
 import TangramGame from '@/components/TangramGame.vue'
+import TrailMakingTest from '@/components/TrailMakingTest.vue'
 
 const store = useConfigStore()
 
@@ -71,6 +72,7 @@ const GameTime = () => {
     <!-- <MemorizationGame v-if="game.active && game.presentation == 3" :maxGrid="MemorizationMaxGrid" />
     <SequencesGame v-if="game.active && game.presentation == 4" :difficulty="SequencesDifficulty" /> -->
     <TangramGame v-if="game.active && game.presentation == 3" />
+    <TrailMakingTest v-if="game.active && game.presentation == 4" />
   </main>
 </template>
 
