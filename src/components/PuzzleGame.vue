@@ -124,7 +124,6 @@ export default {
 <style scoped>
 .puzzle-game {
   position: relative;
-  width: calc(100px * columns);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -157,7 +156,7 @@ export default {
   position: absolute;
   width: 100px;
   height: 100px;
-  border: 1px dashed #000;
+  border: 1px dashed #fff;
   z-index: 10;
   margin-top: -100px;
 }

@@ -8,6 +8,7 @@ import TimerTile from '@/components/TimerTile.vue'
 import { useConfigStore } from '@/stores/config'
 import { storeToRefs } from 'pinia'
 import PuzzleGame from '@/components/PuzzleGame.vue'
+import TangramGame from '@/components/TangramGame.vue'
 
 const store = useConfigStore()
 
@@ -69,6 +70,7 @@ const GameTime = () => {
     <PuzzleGame v-if="game.active && game.presentation == 2" :columns="3" :rows="3" />
     <!-- <MemorizationGame v-if="game.active && game.presentation == 3" :maxGrid="MemorizationMaxGrid" />
     <SequencesGame v-if="game.active && game.presentation == 4" :difficulty="SequencesDifficulty" /> -->
+    <TangramGame v-if="game.active && game.presentation == 3" />
   </main>
 </template>
 
