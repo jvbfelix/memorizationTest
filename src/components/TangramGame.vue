@@ -19,6 +19,12 @@
 
 <script>
 export default {
+  props: {
+    maxPieces: {
+      type: Number,
+      required: true
+    },
+  },
   data() {
     return {
       pieces: [],

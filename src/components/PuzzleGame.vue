@@ -39,14 +39,14 @@ export default {
     columns: {
       type: Number,
       required: true
+    },
+    imageUrls: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
     return {
-      imageUrls: [
-        'https://i0.wp.com/salvadoradesivo.com/wp-content/uploads/2021/03/Poster-homem-aranha4_.jpg',
-        'https://a-static.mlcdn.com.br/800x560/poster-cartaz-jogo-super-mario-kart-pop-arte-poster/poparteskins2/15938549118/7260b2038c84512f0e3e8c55d25add9d.jpeg'
-      ],
       pieces: [],
       slots: [],
       draggedPiece: null

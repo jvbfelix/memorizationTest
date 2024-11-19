@@ -10,6 +10,54 @@ export const useConfigStore = defineStore('configuration', () => {
   const HuntingMaxGrid = ref(Number(localStorage.getItem('HuntingMaxGrid')) || 16)
   const HuntingWordsMax = ref(Number(localStorage.getItem('HuntingWordsMax')) || 0)
   const HuntingWordsList = ref(JSON.parse(localStorage.getItem('HuntingWordsList') || '[""]'))
+  const PuzzleGameTime = ref(Number(localStorage.getItem('PuzzleGameTime')) || 60)
+  const TangramGameTime = ref(Number(localStorage.getItem('TangramGameTime')) || 60)
+  const TrailMakingTestTime = ref(Number(localStorage.getItem('TrailMakingTestTime')) || 60)
+  const TangramMaxPieces = ref(Number(localStorage.getItem('TangramMaxPieces')) || 7)
+  const TrailMakingMaxDots = ref(Number(localStorage.getItem('TrailMakingMaxDots')) || 25)
+  const PuzzleColumns = ref(Number(localStorage.getItem('PuzzleColumns')) || 4)
+  const PuzzleRows = ref(Number(localStorage.getItem('PuzzleRows')) || 4)
+  const PuzzleImageUrls = ref(JSON.parse(localStorage.getItem('PuzzleImageUrls') || '[]'))
+
+  function setPuzzleColumns(value: number) {
+    PuzzleColumns.value = value
+    localStorage.setItem('PuzzleColumns', value.toString())
+  }
+
+  function setPuzzleRows(value: number) {
+    PuzzleRows.value = value
+    localStorage.setItem('PuzzleRows', value.toString())
+  }
+
+  function setPuzzleImageUrls(value: string[]) {
+    PuzzleImageUrls.value = value
+    localStorage.setItem('PuzzleImageUrls', JSON.stringify(value))
+  }
+
+  function setTangramMaxPieces(value: number) {
+    TangramMaxPieces.value = value
+    localStorage.setItem('TangramMaxPieces', value.toString())
+  }
+
+  function setTrailMakingMaxDots(value: number) {
+    TrailMakingMaxDots.value = value
+    localStorage.setItem('TrailMakingMaxDots', value.toString())
+  }
+
+  function setPuzzleGameTime(value: number) {
+    PuzzleGameTime.value = value
+    localStorage.setItem('PuzzleGameTime', value.toString())
+  }
+
+  function setTangramGameTime(value: number) {
+    TangramGameTime.value = value
+    localStorage.setItem('TangramGameTime', value.toString())
+  }
+
+  function setTrailMakingTestTime(value: number) {
+    TrailMakingTestTime.value = value
+    localStorage.setItem('TrailMakingTestTime', value.toString())
+  }
 
   function setHuntingWordsTime(value: number) {
     HuntingWordsTime.value = value
@@ -60,6 +108,14 @@ export const useConfigStore = defineStore('configuration', () => {
     HuntingMaxGrid,
     HuntingWordsMax,
     HuntingWordsList,
+    PuzzleGameTime,
+    TangramGameTime,
+    TrailMakingTestTime,
+    TangramMaxPieces,
+    TrailMakingMaxDots,
+    PuzzleColumns,
+    PuzzleRows,
+    PuzzleImageUrls,
     setHuntingWordsTime,
     setSequencesGameTime,
     setMemorizationGameTime,
@@ -67,6 +123,14 @@ export const useConfigStore = defineStore('configuration', () => {
     setSequencesDifficulty,
     setHuntingMaxGrid,
     setHuntingWordsMax,
-    setHuntingWordsList
+    setHuntingWordsList,
+    setPuzzleGameTime,
+    setTangramGameTime,
+    setTrailMakingTestTime,
+    setTangramMaxPieces,
+    setTrailMakingMaxDots,
+    setPuzzleColumns,
+    setPuzzleRows,
+    setPuzzleImageUrls
   }
 })

@@ -21,7 +21,15 @@ const {
   SequencesDifficulty,
   HuntingMaxGrid,
   HuntingWordsMax,
-  HuntingWordsList
+  HuntingWordsList,
+  PuzzleGameTime,
+  TangramGameTime,
+  TrailMakingTestTime,
+  TangramMaxPieces,
+  TrailMakingMaxDots,
+  PuzzleColumns,
+  PuzzleRows,
+  PuzzleImageUrls
 } = storeToRefs(store)
 
 let game = reactive({ presentation: 0, active: false })
@@ -44,11 +52,11 @@ const finishGame = () => {
 const GameTime = () => {
   switch (game.presentation) {
     case 2:
-      return HuntingWordsTime.value
+      return PuzzleGameTime.value
     case 3:
-      return MemorizationGameTime.value
+      return TangramGameTime.value
     case 4:
-      return SequencesGameTime.value
+      return TrailMakingTestTime.value
     default:
       return 10
   }
@@ -68,11 +76,11 @@ const GameTime = () => {
       :words="HuntingWordsList"
       :wordsMax="HuntingWordsMax"
     /> -->
-    <PuzzleGame v-if="game.active && game.presentation == 2" :columns="3" :rows="3" />
+    <PuzzleGame v-if="game.active && game.presentation == 2" :columns="PuzzleColumns" :rows="PuzzleRows" :imageUrls="PuzzleImageUrls"/>
     <!-- <MemorizationGame v-if="game.active && game.presentation == 3" :maxGrid="MemorizationMaxGrid" />
     <SequencesGame v-if="game.active && game.presentation == 4" :difficulty="SequencesDifficulty" /> -->
-    <TangramGame v-if="game.active && game.presentation == 3" />
-    <TrailMakingTest v-if="game.active && game.presentation == 4" />
+    <TangramGame v-if="game.active && game.presentation == 3" :maxPieces="TangramMaxPieces" />
+    <TrailMakingTest v-if="game.active && game.presentation == 4" :maxDots="TrailMakingMaxDots" />
   </main>
 </template>
 

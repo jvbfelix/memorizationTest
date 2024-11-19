@@ -37,6 +37,12 @@
 
 <script>
 export default {
+  props: {
+    maxDots: {
+      type: Number,
+      default: 10
+    }
+  },
   data() {
     return {
       dots: [],
@@ -59,7 +65,7 @@ export default {
       } while (!this.isSolvable())
     },
     generateRandomDots() {
-      const numDots = Math.floor(Math.random() * 10) + 10 // Random number of dots between 10 and 20
+      const numDots = Math.floor(Math.random() * (this.maxDots - 10 + 1)) + 10 // Random number of dots between 10 and maxDots
       const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange']
       const svgWidth = 800 // Assuming a fixed width for simplicity
       const svgHeight = 600 // Assuming a fixed height for simplicity
